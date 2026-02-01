@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قمر الخليج للسفر والسياحة | رفاهية بلا حدود</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A4D2E',
+                        'primary-dark': '#063821',
+                        accent: '#C69C3A',
+                        'accent-light': '#E5C56C',
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #0A4D2E; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C69C3A; }
+
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, rgba(6, 56, 33, 0.7), rgba(0,0,0,0.8)), 
+                        url('1.jpg') center/cover no-repeat fixed;
+            position: relative;
+        }
+        
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.95) !important; 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(198, 156, 58, 0.1);
+        }
+        .nav-scrolled .logo-text { color: #0A4D2E !important; }
+        .nav-scrolled .nav-link { color: #0A4D2E !important; }
+        .nav-scrolled .nav-bg { background: transparent !important; color: #0A4D2E !important; }
+        .nav-scrolled .mobile-menu-btn { color: #0A4D2E !important; } 
+
+        .service-card { 
+            transition: all 0.4s ease; 
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .service-card:hover { 
+            transform: translateY(-5px) md:translateY(-10px); 
+            box-shadow: 0 10px 20px rgba(10, 77, 46, 0.15);
+            border-color: #C69C3A;
+        }
+
+        .dest-card { overflow: hidden; border-radius: 1rem; position: relative; }
+        .dest-card img { transition: transform 0.7s ease; width: 100%; height: 100%; object-fit: cover; }
+        .dest-card:hover img { transform: scale(1.1); }
+        
+        .btn-gold { 
+            background: linear-gradient(135deg, #C69C3A 0%, #96711E 100%); 
+            position: relative; 
+            overflow: hidden; 
+            z-index: 1;
+        }
+        .btn-gold::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+            background: rgba(255,255,255,0.2); transition: width 0.3s ease; z-index: -1;
+        }
+        .btn-gold:hover::before { width: 100%; }
+
+        .modal-bg { background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); }
+
+        #mobile-menu {
+            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="text-right text-gray-800">
+
+    <nav id="navbar" class="fixed top-0 w-full z-[1000] transition-all duration-500 py-4">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="flex justify-between items-center">
+                
+                <div class="flex items-center gap-4">
+                     <button id="menu-btn" class="md:hidden mobile-menu-btn text-white text-2xl focus:outline-none hover:text-accent transition">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <div class="flex flex-col leading-none">
+                        <span class="text-2xl md:text-4xl font-black text-white logo-text transition-colors duration-300 tracking-tight">قمر الخليج</span>
+                        <span class="text-accent text-[10px] md:text-sm font-bold tracking-widest mt-1">TRAVEL & TOURISM</span>
+                    </div>
+                </div>
+
+                <div class="nav-bg bg-white/10 backdrop-blur-md px-8 py-3 rounded-full hidden md:flex flex-wrap justify-center gap-8 font-bold text-white text-base transition-all duration-300 shadow-sm border border-white/10">
+                    <a href="#home" class="nav-link hover:text-accent transition relative group">الرئيسية<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="#services" class="nav-link hover:text-accent transition relative group">خدماتنا<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="#destinations" class="nav-link hover:text-accent transition relative group">الوجهات<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="#visas" class="nav-link hover:text-accent transition relative group">التأشيرات<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="#contact" class="nav-link hover:text-accent transition relative group">اتصل بنا<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="https://wa.me/9647844005572" target="_blank" class="md:hidden w-10 h-10 flex items-center justify-center btn-gold text-white rounded-full shadow-lg">
+                        <i class="fab fa-whatsapp text-lg"></i>
+                    </a>
+                    <a href="https://wa.me/9647844005572" target="_blank" class="hidden md:flex btn-gold text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-yellow-500/20 items-center gap-2 hover:-translate-y-1 transition-transform">
+                        <span>احجز رحلتك</span>
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-4 shadow-xl border border-slate-100 overflow-hidden">
+                <div class="flex flex-col p-4 space-y-3 font-bold text-primary text-center">
+                    <a href="#home" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">الرئيسية</a>
+                    <a href="#services" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">خدماتنا</a>
+                    <a href="#destinations" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">الوجهات</a>
+                    <a href="#visas" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">التأشيرات</a>
+                    <a href="#contact" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">اتصل بنا</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section flex items-center justify-center text-center px-4 pt-32 md:pt-0">
+        <div class="max-w-5xl space-y-8" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-5xl md:text-8xl font-black text-white leading-relaxed md:leading-normal drop-shadow-2xl py-2">
+                اكتشف العالم
+                <span class="block text-transparent bg-clip-text bg-gradient-to-l from-accent to-yellow-200 mt-2 pb-4">
+                    بفخامة لا تنتهي
+                </span>
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-200 font-light max-w-2xl mx-auto leading-relaxed">
+                من قلب الفلوجة إلى أبعد نقطة في الأرض، نصنع لك ذكريات تدوم مدى الحياة بخدمات مصممة لراحتك.
+            </p>
+            <div class="pt-6 flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#destinations" class="bg-white text-primary px-10 py-4 rounded-full font-black text-lg hover:bg-gray-100 transition shadow-2xl hover:shadow-white/20">تصفح العروض</a>
+                <a href="#services" class="border-2 border-white/30 backdrop-blur-sm text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition">خدماتنا</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white/50 text-2xl"></i>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 md:py-28 px-4 md:px-8 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+                <span class="text-accent font-bold tracking-wider uppercase text-sm">خدمات متكاملة</span>
+                <h2 class="text-3xl md:text-5xl font-black text-primary mt-2">عالمك بين يديك</h2>
+                <div class="w-24 h-1.5 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+                </div>
+        </div>
+    </section>
+
+    <section id="destinations" class="py-16 md:py-28 bg-white px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative flex flex-col md:block items-center mb-10 md:mb-16 gap-4" data-aos="fade-left">
+                <div class="md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 z-10 w-full md:w-auto text-center md:text-right order-2 md:order-none">
+                    <a href="https://wa.me/9647844005572" class="text-primary font-bold hover:text-accent transition inline-flex items-center gap-2 bg-primary/5 md:bg-transparent px-4 py-2 rounded-full md:p-0">
+                        تواصل معنا لعروض خاصة <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="text-center w-full order-1 md:order-none">
+                    <span class="text-accent font-bold tracking-wider uppercase text-sm block">وجهاتنا المميزة</span>
+                    <h2 class="text-3xl md:text-5xl font-black text-primary mt-2">اختر وجهتك القادمة</h2>
+                    <div class="w-24 h-1 bg-accent mx-auto rounded-full mt-4 md:hidden"></div>
+                </div>
+            </div>
+            
+            <div id="dest-container" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+                </div>
+        </div>
+    </section>
+
+    <section id="visas" class="py-16 md:py-28 bg-slate-50 px-4 md:px-8 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10 md:mb-16" data-aos="fade-down">
+                <h2 class="text-3xl md:text-5xl font-black text-primary">بوابتك للتأشيرات</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-sm md:text-base">إجراءات سريعة، موثوقة، وبأقل تعقيد ممكن. اختر الدولة واترك الباقي علينا.</p>
+            </div>
+            <div id="visa-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+                </div>
+        </div>
+    </section>
+
+    <div id="visaModal" class="fixed inset-0 z-[2000] hidden flex items-center justify-center p-4 modal-bg transition-opacity duration-300">
+        <div class="bg-white w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="visaModalCard">
+            <button onclick="closeVisaModal()" class="absolute top-4 left-4 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-primary z-10 backdrop-blur-sm transition shadow-md">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="h-40 overflow-hidden relative">
+                <img id="visaModalImg" src="" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+            </div>
+            <div class="p-6 md:p-8 -mt-6 relative bg-white rounded-t-3xl">
+                <h3 id="visaModalTitle" class="text-2xl md:text-3xl font-black text-primary mb-6 flex items-center gap-3"></h3>
+                <div id="visaModalContent" class="space-y-6"></div>
+                <div class="mt-8 p-4 bg-red-50 border-r-4 border-red-500 rounded-lg">
+                    <p class="text-red-600 text-xs md:text-sm font-bold">
+                        <i class="fas fa-info-circle ml-1"></i> ملاحظة: أيام العطل والتقديم لا تحتسب ضمن المدة.
+                    </p>
+                </div>
+                <div class="pt-6">
+                    <a href="https://wa.me/9647844005572" target="_blank" class="block w-full btn-gold text-white text-center py-4 rounded-xl font-black shadow-lg hover:shadow-xl transition-shadow">
+                         ابدأ التقديم الآن <i class="fab fa-whatsapp mr-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="detailsModal" class="fixed inset-0 z-[2000] hidden flex items-center justify-center p-4 modal-bg">
+        <div class="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="modalCard">
+            <button onclick="closeModal()" class="absolute top-4 left-4 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-primary z-10 backdrop-blur-sm transition shadow-md">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="h-52 md:h-80 overflow-hidden relative group">
+                <img id="modalImg" src="" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div class="absolute bottom-6 right-6 text-white">
+                    <h3 id="modalTitle" class="text-2xl md:text-4xl font-black drop-shadow-lg"></h3>
+                    <div id="modalCatchy" class="text-accent-light font-bold text-sm md:text-lg mt-1"></div>
+                </div>
+            </div>
+            <div class="p-6 md:p-10">
+                <div id="modalDetails" class="text-slate-600 text-sm md:text-lg leading-relaxed space-y-4"></div>
+                <div class="pt-6 md:pt-8 mt-4 md:mt-6 border-t border-slate-100">
+                    <a href="https://wa.me/9647844005572" target="_blank" class="flex justify-between items-center w-full btn-gold text-white px-8 py-4 rounded-xl font-black shadow-lg hover:shadow-xl transition-shadow group">
+                        <span>احجز مقعدك الآن</span>
+                        <i class="fab fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact" class="bg-primary-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="max-w-7xl mx-auto px-6 py-16 relative z-10">
+            <div class="grid md:grid-cols-3 gap-12 text-center md:text-right">
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-4xl font-black mb-2">قمر الخليج</h3>
+                        <div class="w-16 h-1 bg-accent rounded-full md:mx-0 mx-auto"></div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                        نحن لا نبيع تذاكر سفر فحسب، بل نصنع تجارب استثنائية. التزامنا بالجودة والرفاهية هو ما يجعلنا خيارك الأول في عالم السياحة.
+                    </p>
+                    <div class="flex justify-center md:justify-start gap-4 pt-4">
+                        <a href="https://www.facebook.com/share/17svoVFy3u/" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:-translate-y-1 transition border border-white/10"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/qamar_alkhaliij" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:-translate-y-1 transition border border-white/10"><i class="fab fa-instagram"></i></a>
+                        <a href="http://www.tiktok.com/@gamaralkhalij" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:-translate-y-1 transition border border-white/10"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <h4 class="text-xl font-bold text-accent">تواصل معنا</h4>
+                    <div class="space-y-4">
+                        <a href="tel:07844005572" class="flex items-center justify-center md:justify-start gap-3 text-gray-300 hover:text-white transition">
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-accent"><i class="fas fa-phone"></i></div>
+                            <span dir="ltr">0784 400 5572</span>
+                        </a>
+                        <a href="tel:07744005595" class="flex items-center justify-center md:justify-start gap-3 text-gray-300 hover:text-white transition">
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-accent"><i class="fas fa-phone"></i></div>
+                            <span dir="ltr">0774 400 5595</span>
+                        </a>
+                        <a href="tel:07500807094" class="flex items-center justify-center md:justify-start gap-3 text-gray-300 hover:text-white transition">
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-accent"><i class="fas fa-phone"></i></div>
+                            <span dir="ltr">0750 080 7094</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h4 class="text-xl font-bold text-accent">موقعنا</h4>
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-sm">
+                        <p class="flex items-start gap-3 text-gray-300 leading-relaxed">
+                            <i class="fas fa-map-marker-alt text-accent mt-1 text-xl"></i>
+                            <span>العراق، الفلوجة<br>شارع الثرثار العام<br>مجاور صيدلية السدن</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 mt-12 pt-8 text-center text-gray-500 text-xs font-medium">
+                &copy; 2026 جميع الحقوق محفوظة لشركة قمر الخليج للسفر والسياحة
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            if(mobileMenu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                menuBtn.classList.add('text-primary'); 
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                menuBtn.classList.remove('text-primary');
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+
+        const servicesData = [
+            { icon: "fa-plane-departure", title: "حجوزات طيران", desc: "أفضل الأسعار عالمياً" },
+            { icon: "fa-hotel", title: "فنادق", desc: "إقامة تناسب ميزانيتك" },
+            { icon: "fa-passport", title: "تأشيرات", desc: "إنجاز سريع للمعاملات" },
+            { icon: "fa-users", title: "كروبات", desc: "رحلات سياحية منظمة" },
+            { icon: "fa-kaaba", title: "عمرة", desc: "خدمات دينية راقية" },
+            { icon: "fa-comments", title: "استشارات", desc: "تخطيط مسارات بدقة" }
+        ];
+
+        const servicesContainer = document.querySelector('#services .grid');
+        servicesData.forEach((s, i) => {
+            servicesContainer.innerHTML += `
+                <div class="service-card p-4 md:p-8 rounded-2xl md:rounded-[2rem] text-center group" data-aos="fade-up" data-aos-delay="${i * 50}">
+                    <div class="w-14 h-14 md:w-20 md:h-20 mx-auto bg-primary/5 rounded-2xl flex items-center justify-center text-2xl md:text-3xl text-primary mb-3 md:mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                        <i class="fas ${s.icon}"></i>
+                    </div>
+                    <h3 class="text-base md:text-2xl font-black text-primary mb-1 md:mb-3">${s.title}</h3>
+                    <p class="text-xs md:text-base text-slate-500 font-medium leading-relaxed">${s.desc}</p>
+                </div>
+            `;
+        });
+
+        const destinations = [
+            { name: "اسطنبول", img: "1.jpg", catchy: "حيث يلتقي الشرق بالغرب", needsVisa: false },
+            { name: "طرابزون", img: "2.jpg", catchy: "عروس البحر الأسود", needsVisa: false },
+            { name: "أنطاليا", img: "3.jpg", catchy: "ريفيرا تركيا الساحرة", needsVisa: false },
+            { name: "دبي", img: "4.jpg", catchy: "لؤلؤة الخليج المتألقة", needsVisa: true },
+            { name: "قطر", img: "5.jpg", catchy: "أصالة الضيافة العربية", needsVisa: true },
+            { name: "مسقط", img: "6.jpg", catchy: "جوهرة عُمان المخفية", needsVisa: true },
+            { name: "القاهرة", img: "12.jpg", catchy: "سحر النيل والأهرامات", needsVisa: true },
+            { name: "شرم الشيخ", img: "13.jpg", catchy: "جنة الغوص والاسترخاء", needsVisa: true },
+            { name: "بيروت", img: "15.jpg", catchy: "باريس الشرق", needsVisa: false },
+            { name: "تونس", img: "16.jpg", catchy: "الخضراء الساحرة", needsVisa: true },
+            { name: "جورجيا", img: "17.jpg", catchy: "بلاد الكرم وسحر جبال القوقاز", needsVisa: true },
+            { name: "اذربيجان", img: "18.jpg", catchy: "باكو.. فينيسيا الشرق وأرض النار", needsVisa: true },
+            { name: "كوالالمبور", img: "7.jpg", catchy: "آسيا الحقيقية", needsVisa: true },
+            { name: "بالي", img: "8.jpg", catchy: "جزيرة الآلهة", needsVisa: true },
+            { name: "لنكاوي", img: "9.jpg", catchy: "أسطورة الطبيعة", needsVisa: true },
+            { name: "بوكيت", img: "10.jpg", catchy: "جزيرة الابتسامة", needsVisa: true },
+            { name: "بتايا", img: "11.jpg", catchy: "المدينة التي لا تنام", needsVisa: true },
+            { name: "المالديف", img: "14.jpg", catchy: "الرومانسية فوق الماء", needsVisa: false }
+
+
+        ];
+
+        const visas = [
+            { name: "مصر", img: "m.jpg", duration: "3 أيام عمل", reqs: ["جواز سفر"] },
+            { name: "السعودية", img: "s.jpg", duration: "6 أيام عمل", reqs: ["جواز سفر", "صورة شخصية"] },
+            { name: "الإمارات", img: "u.jpg", isDubai: true, durations: [{ label: "عادية", time: "5 أيام" }, { label: "عاجلة", time: "24 ساعة" }, { label: "شباب", time: "3 أيام" }], reqs: ["جواز سفر", "صورة شخصية", "هوية وطنية"] },
+            { name: "عمان", img: "o.jpg", duration: "5 أيام عمل", reqs: ["جواز سفر", "صورة شخصية", "هوية وطنية"] },
+            { name: "الأردن", img: "j.jpg", isJordan: true, durations: ["24 ساعة", "5 أيام", "8 أيام", "10 أيام", "16 يوم"], reqs: ["جواز سفر"] },
+            { name: "قطر", img: "q.jpg", duration: "14 يوم", reqs: ["جواز سفر", "صورة شخصية"] },
+            { name: "الصين", img: "c.jpg", duration: "20-40 يوم", reqs: ["جواز أصلي", "بطاقة سكن", "بطاقة موحدة", "صور x2"] },
+            { name: "الهند", img: "i.jpg", duration: "3 أيام عمل", reqs: ["جواز أصلي", "بطاقة سكن", "بطاقة موحدة", "صور x2", "تقرير طبي في حال كانت فيزا علاجية"] },
+            // الدول الجديدة المضافة
+            { name: "تايلاند", img: "th.jpg", isJordan: true, durations: ["3 أيام", "7 أيام"], reqs: ["جواز سفر", "صورة شخصية", "هوية وطنية"] },
+            { name: "اندونيسيا", img: "in.jpg", isJordan: true, durations: ["5 أيام", "8 أيام"], reqs: ["جواز سفر", "صورة شخصية", "هوية وطنية"] },
+            { name: "سنغافورة", img: "sn.jpg", duration: "10 أيام", reqs: ["جواز سفر", "صورة شخصية", "تأييد عمل"] },
+            { name: "سيريلانكا", img: "se.jpg", duration: "4 أيام", reqs: ["جواز سفر", "صورة شخصية"] },
+            { name: "كمبوديا", img: "ko.jpg", duration: "5 أيام", reqs: ["جواز سفر", "صورة شخصية", "كشف حساب مصرفي"] },
+            { name: "باكستان", img: "ba.jpg", duration: "10 أيام", reqs: ["جواز سفر", "صورة شخصية"] }
+        ];
+
+        const destContainer = document.getElementById('dest-container');
+        destinations.forEach((dest, index) => {
+            destContainer.innerHTML += `
+                <div class="dest-card h-[200px] md:h-[400px] shadow-lg group cursor-pointer" onclick="openModal(${index})" data-aos="fade-up">
+                    <img src="${dest.img}" alt="${dest.name}">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 w-full p-3 md:p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-lg md:text-3xl font-black mb-1">${dest.name}</h3>
+                        <p class="text-accent text-[10px] md:text-sm font-bold mb-2 md:mb-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity delay-100 duration-300 truncate">${dest.catchy}</p>
+                        <div class="flex items-center gap-2 text-[10px] md:text-sm font-bold text-gray-300">
+                            <span>التفاصيل</span> <i class="fas fa-arrow-left text-accent"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        const visaContainer = document.getElementById('visa-container');
+        visas.forEach((visa, index) => {
+            visaContainer.innerHTML += `
+                <div class="group cursor-pointer" onclick="openVisaModal(${index})" data-aos="zoom-in" data-aos-delay="${index * 50}">
+                    <div class="aspect-square rounded-2xl md:rounded-3xl overflow-hidden shadow-md border border-slate-200 relative mb-2 md:mb-3 bg-white">
+                        <img src="${visa.img}" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-bold border border-white px-2 py-1 md:px-4 md:py-1 rounded-full text-xs md:text-base">المتطلبات</span>
+                        </div>
+                    </div>
+                    <h3 class="text-center font-black text-primary text-sm md:text-lg group-hover:text-accent transition-colors">${visa.name}</h3>
+                </div>
+            `;
+        });
+
+        function openModal(index) {
+            const dest = destinations[index];
+            const modal = document.getElementById('detailsModal');
+            const card = document.getElementById('modalCard');
+            
+            document.getElementById('modalTitle').innerText = dest.name;
+            document.getElementById('modalImg').src = dest.img;
+            document.getElementById('modalCatchy').innerText = dest.catchy;
+            
+            let html = `<ul class="grid grid-cols-1 md:grid-cols-2 gap-y-3 md:gap-y-4 gap-x-8 mt-4 md:mt-6">`;
+            
+            if(dest.needsVisa) html += `<li class="flex items-center gap-3 text-slate-700 font-bold bg-slate-50 p-3 rounded-lg text-sm md:text-base"><div class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent"><i class="fas fa-id-card"></i></div> تأشيرة الدخول</li>`;
+            
+            const services = [
+                {icon: "fa-plane", text: "تذاكر الطيران ذهاب وعودة"},
+                {icon: "fa-hotel", text: "إقامة فندقية فاخرة"},
+                {icon: "fa-coffee", text: "وجبات الإفطار اليومية"},
+                {icon: "fa-bus", text: "الاستقبال والتوديع من المطار"},
+                {icon: "fa-map-marked-alt", text: "جولات سياحية يومية (اختياري)"}
+            ];
+
+            services.forEach(s => {
+                html += `<li class="flex items-center gap-3 text-slate-700 font-bold bg-slate-50 p-3 rounded-lg text-sm md:text-base"><div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary"><i class="fas ${s.icon}"></i></div> ${s.text}</li>`;
+            });
+            html += `</ul>`;
+            
+            document.getElementById('modalDetails').innerHTML = html;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                card.classList.remove('scale-95', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            }, 50);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openVisaModal(index) {
+            const visa = visas[index];
+            const modal = document.getElementById('visaModal');
+            const card = document.getElementById('visaModalCard');
+            
+            document.getElementById('visaModalTitle').innerText = visa.name;
+            document.getElementById('visaModalImg').src = visa.img;
+            
+            let html = `<div class="grid grid-cols-1 gap-4 md:gap-6">`;
+            
+            html += `<div><h4 class="text-xs md:text-sm font-black text-slate-400 uppercase tracking-wider mb-2 md:mb-3">مدة الإصدار</h4>`;
+            if(visa.isDubai) {
+                html += `<div class="flex flex-wrap gap-2">`;
+                visa.durations.forEach(d => html += `<span class="bg-primary/5 text-primary border border-primary/10 px-2 py-1 md:px-3 rounded-lg text-xs md:text-sm font-bold flex items-center gap-1 md:gap-2"><span>${d.label}:</span> <span class="text-accent">${d.time}</span></span>`);
+                html += `</div>`;
+            } else if(visa.isJordan) {
+                html += `<div class="flex flex-wrap gap-2">`;
+                visa.durations.forEach(d => html += `<span class="bg-primary/5 text-primary px-2 py-1 md:px-3 rounded-lg text-xs md:text-sm font-bold">${d}</span>`);
+                html += `</div>`;
+            } else {
+                html += `<span class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold inline-block shadow-lg shadow-primary/20">${visa.duration}</span>`;
+            }
+            html += `</div>`;
+
+            html += `<div><h4 class="text-xs md:text-sm font-black text-slate-400 uppercase tracking-wider mb-2 md:mb-3">المتطلبات</h4><div class="grid grid-cols-2 gap-2 md:gap-3">`;
+            visa.reqs.forEach(req => {
+                html += `<div class="flex items-center gap-2 p-2 rounded-lg border border-slate-100 bg-slate-50"><i class="fas fa-check-circle text-accent text-xs md:text-base"></i><span class="text-xs md:text-sm font-bold text-slate-700">${req}</span></div>`;
+            });
+            html += `</div></div></div>`;
+
+            document.getElementById('visaModalContent').innerHTML = html;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                card.classList.remove('scale-95', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            }, 50);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const card = document.getElementById('modalCard');
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                document.getElementById('detailsModal').classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        function closeVisaModal() {
+            const card = document.getElementById('visaModalCard');
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                document.getElementById('visaModal').classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const menuBtnIcon = document.querySelector('.mobile-menu-btn');
+            if (window.scrollY > 50) {
+                nav.classList.add('glass-nav', 'nav-scrolled', 'py-2');
+                nav.classList.remove('py-4');
+                menuBtnIcon.classList.add('text-primary'); 
+                menuBtnIcon.classList.remove('text-white');
+            } else {
+                nav.classList.remove('glass-nav', 'nav-scrolled', 'py-2');
+                nav.classList.add('py-4');
+                if (!document.getElementById('mobile-menu').classList.contains('open')) {
+                    menuBtnIcon.classList.remove('text-primary');
+                    menuBtnIcon.classList.add('text-white');
+                }
+            }
+        });
+
+        window.onclick = function(e) {
+            if (e.target.id == 'visaModal') closeVisaModal();
+            if (e.target.id == 'detailsModal') closeModal();
+        }
+    </script>
+</body>
+</html>
