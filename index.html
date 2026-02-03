@@ -90,6 +90,14 @@
             max-height: 400px;
             opacity: 1;
         }
+        
+        .price-table-row:nth-child(even) { background-color: #f8fafc; }
+        .price-table-row:hover { background-color: #f0fdf4; }
+
+        .news-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: #C69C3A #f1f1f1;
+        }
     </style>
 </head>
 <body class="text-right text-gray-800">
@@ -112,6 +120,7 @@
                 <div class="nav-bg bg-white/10 backdrop-blur-md px-8 py-3 rounded-full hidden md:flex flex-wrap justify-center gap-8 font-bold text-white text-base transition-all duration-300 shadow-sm border border-white/10">
                     <a href="#home" class="nav-link hover:text-accent transition relative group">الرئيسية<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
                     <a href="#services" class="nav-link hover:text-accent transition relative group">خدماتنا<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="#prices-news" class="nav-link hover:text-accent transition relative group">الأسعار والأخبار<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
                     <a href="#destinations" class="nav-link hover:text-accent transition relative group">الوجهات<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
                     <a href="#visas" class="nav-link hover:text-accent transition relative group">التأشيرات<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
                     <a href="#contact" class="nav-link hover:text-accent transition relative group">اتصل بنا<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span></a>
@@ -132,6 +141,7 @@
                 <div class="flex flex-col p-4 space-y-3 font-bold text-primary text-center">
                     <a href="#home" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">الرئيسية</a>
                     <a href="#services" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">خدماتنا</a>
+                    <a href="#prices-news" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">الأسعار والأخبار</a>
                     <a href="#destinations" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">الوجهات</a>
                     <a href="#visas" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">التأشيرات</a>
                     <a href="#contact" class="p-2 hover:bg-primary/5 rounded-lg transition" onclick="toggleMenu()">اتصل بنا</a>
@@ -173,7 +183,68 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+            </div>
+        </div>
+    </section>
+
+    <section id="prices-news" class="py-16 bg-slate-50 px-4 md:px-8 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-black text-primary">أسعار الخطوط الجوية العراقية</h2>
+                <p class="text-sm text-slate-500 mt-2">تحديث مباشر للأسعار والأخبار العاجلة</p>
+                <div class="w-16 h-1 bg-accent mx-auto rounded-full mt-3"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden" data-aos="fade-left">
+                    <div class="bg-primary p-4 md:p-6 flex justify-between items-center">
+                        <h3 class="text-white text-xl md:text-2xl font-bold"><i class="fas fa-plane-departure ml-2 text-accent"></i>لائحة الأسعار</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-right min-w-[600px]">
+                            <thead class="bg-slate-50 text-slate-500 text-xs md:text-sm uppercase font-bold border-b border-slate-200">
+                                <tr>
+                                    <th class="px-4 py-4">الوجهة</th>
+                                    <th class="px-4 py-4 text-accent">ذهاب فقط</th>
+                                    <th class="px-4 py-4 text-primary">ذهاب وعودة</th>
+                                    <th class="px-4 py-4">عودة فقط</th>
+                                    <th class="px-4 py-4 text-center">حجز</th>
+                                </tr>
+                            </thead>
+                            <tbody id="prices-table-body" class="divide-y divide-slate-100 text-slate-700 font-medium text-sm md:text-base">
+                                <tr>
+                                    <td colspan="5" class="text-center py-8 text-slate-400">
+                                        <i class="fas fa-circle-notch fa-spin ml-2"></i> جاري تحميل الأسعار...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
+                <div class="lg:col-span-1" data-aos="fade-right">
+                    <div class="bg-white rounded-3xl shadow-xl border-t-4 border-accent h-full flex flex-col overflow-hidden">
+                        <div class="p-6 bg-slate-50 border-b border-slate-100">
+                            <h3 class="text-xl font-black text-primary flex items-center gap-2">
+                                <i class="fas fa-bullhorn text-accent animate-pulse"></i>
+                                أخبار هامة
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">تنبيهات المطارات والرحلات</p>
+                        </div>
+                        
+                        <div id="news-container" class="flex-1 p-4 overflow-y-auto max-h-[400px] news-scroll space-y-3">
+                            <div class="text-center py-10 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin text-2xl mb-2 text-accent"></i>
+                                <p class="text-sm">جاري جلب آخر التنبيهات...</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-primary text-white text-center text-xs">
+                            قمر الخليج - دليلك الأول للسفر
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -194,18 +265,18 @@
             </div>
             
             <div id="dest-container" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
-                </div>
+            </div>
         </div>
     </section>
 
-    <section id="visas" class="py-16 md:py-28 bg-slate-50 px-4 md:px-8 border-t border-slate-200">
+    <section id="visas" class="py-16 md:py-28 bg-white px-4 md:px-8 border-t border-slate-200">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10 md:mb-16" data-aos="fade-down">
                 <h2 class="text-3xl md:text-5xl font-black text-primary">بوابتك للتأشيرات</h2>
                 <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-sm md:text-base">إجراءات سريعة، موثوقة، وبأقل تعقيد ممكن. اختر الدولة واترك الباقي علينا.</p>
             </div>
             <div id="visa-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
-                </div>
+            </div>
         </div>
     </section>
 
@@ -227,8 +298,8 @@
                     </p>
                 </div>
                 <div class="pt-6">
-                    <a href="https://wa.me/9647844005572" target="_blank" class="block w-full btn-gold text-white text-center py-4 rounded-xl font-black shadow-lg hover:shadow-xl transition-shadow">
-                         ابدأ التقديم الآن <i class="fab fa-whatsapp mr-1"></i>
+                    <a id="visaBookingBtn" href="#" target="_blank" class="block w-full btn-gold text-white text-center py-4 rounded-xl font-black shadow-lg hover:shadow-xl transition-shadow">
+                          ابدأ التقديم الآن <i class="fab fa-whatsapp mr-1"></i>
                     </a>
                 </div>
             </div>
@@ -251,7 +322,7 @@
             <div class="p-6 md:p-10">
                 <div id="modalDetails" class="text-slate-600 text-sm md:text-lg leading-relaxed space-y-4"></div>
                 <div class="pt-6 md:pt-8 mt-4 md:mt-6 border-t border-slate-100">
-                    <a href="https://wa.me/9647844005572" target="_blank" class="flex justify-between items-center w-full btn-gold text-white px-8 py-4 rounded-xl font-black shadow-lg hover:shadow-xl transition-shadow group">
+                    <a id="destBookingBtn" href="#" target="_blank" class="flex justify-between items-center w-full btn-gold text-white px-8 py-4 rounded-xl font-black shadow-lg hover:shadow-xl transition-shadow group">
                         <span>احجز مقعدك الآن</span>
                         <i class="fab fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i>
                     </a>
@@ -391,7 +462,7 @@
             { name: "مصر", img: "m.jpg", duration: "3 أيام عمل", reqs: ["جواز سفر"] },
             { name: "السعودية", img: "s.jpg", duration: "6 أيام عمل", reqs: ["جواز سفر", "صورة شخصية"] },
             { name: "الإمارات", img: "u.jpg", isDubai: true, durations: [{ label: "عادية", time: "5 أيام" }, { label: "عاجلة", time: "24 ساعة" }, { label: "شباب", time: "3 أيام" }], reqs: ["جواز سفر", "صورة شخصية", "هوية وطنية"] },
-            { name: "عمان", img: "o.jpg", duration: "5 أيام عمل", reqs: ["جواز سفر", "صورة شخصية", "هوية وطنية"] },
+            { name: "سلطنة عمان", img: "o.jpg", duration: "5 أيام عمل", reqs: ["جواز سفر", "صورة شخصية", "هوية وطنية"] },
             { name: "الأردن", img: "j.jpg", isJordan: true, durations: ["24 ساعة", "5 أيام", "8 أيام", "10 أيام", "16 يوم"], reqs: ["جواز سفر"] },
             { name: "قطر", img: "q.jpg", duration: "14 يوم", reqs: ["جواز سفر", "صورة شخصية"] },
             { name: "الصين", img: "c.jpg", duration: "20-40 يوم", reqs: ["جواز أصلي", "بطاقة سكن", "بطاقة موحدة", "صور x2"] },
@@ -445,6 +516,13 @@
             document.getElementById('modalTitle').innerText = dest.name;
             document.getElementById('modalImg').src = dest.img;
             document.getElementById('modalCatchy').innerText = dest.catchy;
+
+            /* =======================================
+               تحديث رابط الواتساب للوجهات (كروب)
+               ======================================= */
+            const message = `السلام عليكم استفسار بخصوص كروب ${dest.name}`;
+            const whatsappUrl = `https://wa.me/9647844005572?text=${encodeURIComponent(message)}`;
+            document.getElementById('destBookingBtn').href = whatsappUrl;
             
             let html = `<ul class="grid grid-cols-1 md:grid-cols-2 gap-y-3 md:gap-y-4 gap-x-8 mt-4 md:mt-6">`;
             
@@ -479,6 +557,13 @@
             
             document.getElementById('visaModalTitle').innerText = visa.name;
             document.getElementById('visaModalImg').src = visa.img;
+
+            /* =======================================
+               تحديث رابط الواتساب للتأشيرات
+               ======================================= */
+            const message = `السلام عليكم، استفسار بخصوص تأشيرة ${visa.name}`;
+            const whatsappUrl = `https://wa.me/9647844005572?text=${encodeURIComponent(message)}`;
+            document.getElementById('visaBookingBtn').href = whatsappUrl;
             
             let html = `<div class="grid grid-cols-1 gap-4 md:gap-6">`;
             
@@ -553,6 +638,91 @@
             if (e.target.id == 'visaModal') closeVisaModal();
             if (e.target.id == 'detailsModal') closeModal();
         }
+
+        /* =========================================
+           وظيفة جلب البيانات (أخبار + أسعار)
+           ========================================= */
+        const sheetUrl = 'https://script.google.com/macros/s/AKfycbzBE_uquDO2IefVd666qKl4inEzxJ7fvbaV-vUx5LXrWAvOVfKm3eVC7nmYr-ztOY0F/exec';
+        
+        async function fetchData() {
+            const newsContainer = document.getElementById('news-container');
+            const pricesTableBody = document.getElementById('prices-table-body');
+            
+            try {
+                const response = await fetch(sheetUrl);
+                const data = await response.json();
+                
+                // معالجة هيكلية البيانات المختلفة (مصفوفة أو كائن)
+                let items = [];
+                if (Array.isArray(data)) {
+                    items = data;
+                } else if (data.data && Array.isArray(data.data)) {
+                    items = data.data;
+                } else {
+                    items = Object.values(data);
+                }
+
+                // تنظيف المحتوى القديم
+                newsContainer.innerHTML = ''; 
+                pricesTableBody.innerHTML = '';
+
+                let hasNews = false;
+                let hasPrices = false;
+
+                items.forEach(item => {
+                    const values = Object.values(item);
+                    
+                    // العمود الأول (Index 0): الأخبار
+                    if (values[0] && values[0] !== '' && values[0] !== 'الاخبار') {
+                        hasNews = true;
+                        newsContainer.innerHTML += `
+                            <div class="bg-white border-r-4 border-red-500 p-3 rounded shadow-sm hover:shadow-md transition">
+                                <h4 class="font-bold text-primary text-sm mb-1">عاجل</h4>
+                                <p class="text-xs md:text-sm text-slate-700 font-medium">${values[0]}</p>
+                            </div>
+                        `;
+                    }
+
+                    // العمود الثاني (Index 1): الوجهة + الأسعار
+                    if (values[1] && values[1] !== '' && values[1] !== 'الوجهة') {
+                        hasPrices = true;
+                        
+                        const destination = values[1];
+                        const oneWay = values[2] || '-';  // العمود C: ذهاب فقط
+                        const roundTrip = values[3] || '-'; // العمود D: ذهاب وعودة
+                        const returnOnly = values[4] || '-'; // العمود E: عودة فقط
+
+                        pricesTableBody.innerHTML += `
+                            <tr class="price-table-row transition-colors">
+                                <td class="px-4 py-4 font-bold text-primary">${destination}</td>
+                                <td class="px-4 py-4 text-accent font-bold">${oneWay}</td>
+                                <td class="px-4 py-4 text-primary font-bold">${roundTrip}</td>
+                                <td class="px-4 py-4 text-slate-500 font-bold">${returnOnly}</td>
+                                <td class="px-4 py-4 text-center">
+                                    <a href="https://wa.me/9647844005572?text=استفسار عن رحلة ${destination}" class="inline-flex items-center justify-center gap-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-accent transition-colors text-xs md:text-sm font-bold">
+                                        <i class="fab fa-whatsapp text-lg"></i>
+                                        <span>احجز الآن</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                    }
+                });
+
+                // رسائل في حال عدم وجود بيانات
+                if (!hasNews) newsContainer.innerHTML = '<p class="text-center text-slate-400 py-4 text-xs">لا توجد تنبيهات حالياً</p>';
+                if (!hasPrices) pricesTableBody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-slate-400">لا توجد رحلات متاحة حالياً</td></tr>';
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                newsContainer.innerHTML = '<div class="text-center text-red-400 py-4 text-xs">حدث خطأ في التحديث</div>';
+                pricesTableBody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-red-400">تعذر تحميل الأسعار</td></tr>';
+            }
+        }
+
+        // استدعاء الدالة عند التحميل
+        document.addEventListener('DOMContentLoaded', fetchData);
+
     </script>
 </body>
 </html>
