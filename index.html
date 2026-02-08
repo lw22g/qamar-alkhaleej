@@ -129,15 +129,18 @@
     <nav id="navbar" class="fixed top-0 w-full z-[1000] transition-all duration-500 py-4">
         <div class="max-w-7xl mx-auto px-4 md:px-8">
             <div class="flex justify-between items-center">
-                <div class="flex items-center gap-4">
-                     <button id="menu-btn" class="md:hidden mobile-menu-btn text-white text-2xl focus:outline-none hover:text-accent transition">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <div class="flex flex-col leading-none">
-                        <span class="text-2xl md:text-4xl font-black text-white logo-text transition-colors duration-300 tracking-tight">قمر الخليج</span>
-                        <span class="text-accent text-[10px] md:text-sm font-bold tracking-widest mt-1">TRAVEL & TOURISM</span>
-                    </div>
-                </div>
+                <div class="flex items-center gap-3 md:gap-4">
+    <button id="menu-btn" class="md:hidden mobile-menu-btn text-white text-2xl focus:outline-none hover:text-accent transition">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <img src="logo.png" alt="لوجو قمر الخليج" class="h-10 md:h-14 w-auto object-contain drop-shadow-md">
+
+    <div class="flex flex-col leading-none">
+        <span class="text-2xl md:text-4xl font-black text-white logo-text transition-colors duration-300 tracking-tight">قمر الخليج</span>
+        <span class="text-accent text-[10px] md:text-sm font-bold tracking-widest mt-1">TRAVEL & TOURISM</span>
+    </div>
+</div>
 
                 <div class="nav-bg bg-white/10 backdrop-blur-md px-8 py-3 rounded-full hidden md:flex flex-wrap justify-center gap-8 font-bold text-white text-base transition-all duration-300 shadow-sm border border-white/10">
                     <a href="#home" class="nav-link hover:text-accent transition relative group">الرئيسية</a>
@@ -338,7 +341,8 @@
     <script>
         AOS.init({ once: true, duration: 800 });
 
-        const sheetUrl = '/get-data';
+        const sheetUrl = 'https://script.google.com/macros/s/AKfycbzBE_uquDO2IefVd666qKl4inEzxJ7fvbaV-vUx5LXrWAvOVfKm3eVC7nmYr-ztOY0F/exec';
+
         // دالة فتح/غلق الكبسولة
         function toggleCapsule(element) {
             const allCapsules = document.querySelectorAll('.capsule-item');
@@ -647,5 +651,4 @@
 
     </script>
 </body>
-
 </html>
